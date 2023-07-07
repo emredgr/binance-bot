@@ -1,0 +1,28 @@
+# Binance API connection information
+Connection:
+  api_key: "***********************************"  # Your Binance API key
+  api_secret:  "***********************************"  # Your Binance API secret key
+
+# Time intervals for which to gather data
+Time_Interval:
+  False: '1m'    # 1 minute interval
+  False: '3m'    # 3 minutes interval
+  False: '5m'    # 5 minutes interval
+  False: '15m'   # 15 minutes interval
+  True: '30m'    # 30 minutes interval
+  False: '1h'    # 1 hour interval
+  False: '2h'    # 2 hours interval
+  False: '4h'    # 4 hours interval
+  False: '6h'    # 6 hours interval
+  False: '8h'    # 8 hours interval
+  False: '12h'   # 12 hours interval
+  False: '1d'    # 1 day interval
+  False: '3d'    # 3 days interval
+  False: '1w'    # 1 week interval
+  False: '1M'    # 1 month interval
+
+# The date range for data collection
+Date_Range:
+  start_date: "2023-01-31"  # Start date for data collection
+  stop_date: "2023-07-08"   # Stop date for data collection
+
