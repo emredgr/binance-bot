@@ -1,7 +1,7 @@
 from binance.client import Client
 from pandas import DataFrame
 from datetime import datetime
-import logging
+from logging import info
 
 class FetchData(object):
 
@@ -29,8 +29,8 @@ class FetchData(object):
         
         self.dataframe: DataFrame = DataFrame(data, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume', 'close_time', 'quote_asset_volume', 'number_of_trades', 'taker_buy_base_asset_volume', 'taker_buy_quote_asset_volume', 'ignore'])
         
-        logging.info(f"Data fetched for {self.coin} coin within the date range of {start_date} to {stop_date}.")
-        logging.info(f" Fetched data count : {self.dataframe.shape[0]}")
+        info(f"Data fetched for {self.coin} coin within the date range of {start_date} to {stop_date}.")
+        info(f" Fetched data count : {self.dataframe.shape[0]}")
 
 
     def fetchData(self):

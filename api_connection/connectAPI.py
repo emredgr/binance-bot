@@ -1,6 +1,6 @@
 from binance.client import Client
 from typing import Union
-import logging
+from logging import info
 
 class ConnectBinance:
     """Class used for connecting to the Binance API."""
@@ -32,5 +32,5 @@ class ConnectBinance:
             raise Exception(f"API connection failed, check the API_KEY and API_SECRET_KEY, \n Exception Message -> {ex}")
         
         else:
-            logging.info("Binance Api connection successful")
+            info("Binance Api connection successful")
             return self.client

@@ -1,6 +1,5 @@
 from pandas import DataFrame
-import logging
-
+from logging import info, warning
 
 class DataGenerator(object):
 
@@ -24,7 +23,7 @@ class DataGenerator(object):
             rs = avg_gain / avg_loss
             self.dataframe['RSI'] = 100 - (100 / (1 + rs))
         except Exception as ex:
-            logging.warning(f"""Error while adding RSI indicator to self.dataframe,
+            warning(f"""Error while adding RSI indicator to self.dataframe,
                              \n Exception message : {ex}""")
         
 
@@ -47,7 +46,7 @@ class DataGenerator(object):
             self.dataframe['MACD_signal'] = signal
 
         except Exception as ex:
-            logging.warning(f"""Error while adding MACD indicator to self.dataframe,
+            warning(f"""Error while adding MACD indicator to self.dataframe,
                              \n Exception message : {ex}""")
         
         
@@ -61,7 +60,7 @@ class DataGenerator(object):
 
             self.dataframe['SMA'] = self.dataframe['close'].rolling(window=14).mean()
         except Exception as ex:
-            logging.warning(f"""Error while adding SMA indicator to self.dataframe,
+            warning(f"""Error while adding SMA indicator to self.dataframe,
                              \n Exception message : {ex}""")
         
     
@@ -71,6 +70,6 @@ class DataGenerator(object):
         self.addRSI()
         self.addMACD()
         
-        logging.info(f"Added SMA, RSI, MACD and MACD_signal columns to the data.")
+        info(f"Added SMA, RSI, MACD and MACD_signal columns to the data.")
 
         return self.dataframe
