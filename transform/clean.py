@@ -10,9 +10,4 @@ class DataCleaner(object):
     def dropNA(self):
         self.dataframe = self.dataframe.dropna()  # drop the NaN values from dataframe
 
-    def cleanData(self)-> DataFrame:
-        self.dropNA()
-        # add other data cleaning process to here.
-
-        info(f"Data cleaning is complete. The cleaned data is being returned.")
-        return self.dataframe
+   

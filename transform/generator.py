@@ -64,12 +64,3 @@ class DataGenerator(object):
                              \n Exception message : {ex}""")
         
     
-    def generateData(self)-> DataFrame:
-        
-        self.addSMA()
-        self.addRSI()
-        self.addMACD()
-        
-        info(f"Added SMA, RSI, MACD and MACD_signal columns to the data.")
-
-        return self.dataframe

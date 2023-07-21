@@ -23,10 +23,4 @@ class TypeConverter(object):
         except Exception as ex:
             warning(f"Error while type casting to numeric format, \nerror message : {ex}")
 
-    def applyCasting(self)-> DataFrame:
-        self.toUnixTime()
-        self.toNumeric()
-        
-        info("Data type conversions have been successfully completed.")
-
-        return self.dataframe
+    

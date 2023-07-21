@@ -7,36 +7,29 @@ class FetchData(object):
 
     def __init__(self, client: Client, coin: str, time_interval: str,
                  start_date: str, stop_date: str) -> None:
-        self.dataframe = DataFrame()
-
+        
         self.client: Client = client
-        self.coin = coin
+        
+        self.coin = f"{coin}USDT"
+        
         self.time_interval = time_interval
-        self.start_date = start_date
-        self.stop_date = stop_date
-        
-    def fetchDataFromBinance(self):
-        
-        coin: str = f"{self.coin}USDT"
-        start_date: str = datetime.strptime(self.start_date, "%Y-%m-%d").strftime("%Y-%m-%d")
-        stop_date: str =  datetime.strptime(self.stop_date, "%Y-%m-%d").strftime("%Y-%m-%d")
-
-
+        self.start_date =  datetime.strptime(start_date, "%Y-%m-%d").strftime("%Y-%m-%d")
+        self.stop_date =  datetime.strptime(stop_date, "%Y-%m-%d").strftime("%Y-%m-%d")
         
 
-        data = self.client.get_historical_klines(symbol= coin, interval= self.time_interval,
-                                                 start_str= start_date, end_str= stop_date)
-        
-        self.dataframe: DataFrame = DataFrame(data, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume', 'close_time', 'quote_asset_volume', 'number_of_trades', 'taker_buy_base_asset_volume', 'taker_buy_quote_asset_volume', 'ignore'])
-        
-        info(f"Data fetched for {self.coin} coin within the date range of {start_date} to {stop_date}.")
-        info(f" Fetched data count : {self.dataframe.shape[0]}")
 
+    def fetchDataFromBinance(self)-> DataFrame:
+        
+        data = self.client.get_historical_klines(symbol= self.coin, interval= self.time_interval,
+                                                 start_str= self.start_date, end_str= self.stop_date)
+        
+        dataframe: DataFrame = DataFrame(data, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume', 'close_time', 'quote_asset_volume', 'number_of_trades', 'taker_buy_base_asset_volume', 'taker_buy_quote_asset_volume', 'ignore'])
+        
+        info(f"Data fetched for {self.coin.replace('USDT','')} coin within the date range of {self.start_date} to {self.stop_date}.")
+        info(f" Fetched data count : {dataframe.shape[0]}")
 
-    def fetchData(self):
-        self.fetchDataFromBinance()
+        return dataframe
     
-        return self.dataframe
     
 
         

@@ -40,7 +40,8 @@ class Manager(object):
         fetcher = FetchData(self.client, coin= coin_name, time_interval= self.time_interval,
                           start_date= self.start_date, stop_date= self.stop_date)
 
-        dataframe: DataFrame= fetcher.fetchData()        
+        dataframe: DataFrame= fetcher.fetchDataFromBinance()
+              
         return dataframe
     
     
@@ -48,20 +49,33 @@ class Manager(object):
         # manages type casting operations on data and returns edited data
 
         converter = TypeConverter(dataframe= data)
-        data = converter.applyCasting()
+        converter.toUnixTime()
+        converter.toNumeric()
+        data: DataFrame = converter.dataframe.copy()
+        info("Data type conversions have been successfully completed.")
         return data
     
     def generateData(self,data: DataFrame)-> DataFrame:
         # manages the process of generating different data by using the information in the data. And it returns data.
 
         generator = DataGenerator(dataframe=data)
-        generated_data: DataFrame= generator.generateData()
+        generator.addSMA()
+        generator.addRSI()
+        generator.addMACD()
+        
+        info(f"Added SMA, RSI, MACD and MACD_signal columns to the data.")
+        generated_data: DataFrame= generator.dataframe.copy()
         return generated_data
     
     def cleanData(self, data: DataFrame)-> DataFrame:
         # manages the process of cleaning the data and returns the cleaned data.
         cleaner = DataCleaner(dataframe= data)
-        cleaned_data: DataFrame= cleaner.cleanData()
+        cleaner.dropNA()
+        # add other data cleaning process to here.
+
+        info(f"Data cleaning is complete. The cleaned data is being returned.")
+
+        cleaned_data: DataFrame= cleaner.dataframe.copy()
         return cleaned_data
 
     def isDataExtract(self, data: DataFrame, output_path: str):
