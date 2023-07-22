@@ -1,8 +1,8 @@
 
 from pandas import DataFrame
-from logging import info
 
-class DataCleaner(object):
+
+class DataCleaner:
 
     def __init__(self, dataframe: DataFrame) -> None:
         self.dataframe = dataframe

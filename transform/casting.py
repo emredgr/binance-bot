@@ -1,9 +1,9 @@
 
 from datetime import datetime
 from pandas import DataFrame,to_numeric
-from logging import info, warning
+from logging import warning
 
-class TypeConverter(object):
+class TypeConverter:
 
     def __init__(self,dataframe: DataFrame) -> None:
         self.dataframe = dataframe

@@ -2,7 +2,7 @@ from argparse import ArgumentParser as ArgParser, RawDescriptionHelpFormatter
 from logging import info
 from textwrap import dedent
 
-class ArgumentParser(object):
+class ArgumentParser:
 
     def __init__(self) -> None:
         
